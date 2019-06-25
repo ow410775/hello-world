@@ -2,6 +2,7 @@ node {
 	def server = Artifactory.newServer url: 'http://127.0.0.1:8081/artifactory/', credentialsId: 'admin.jfrog.localhost'
 	def rtMaven = Artifactory.newMavenBuild()
 	def buildInfo
+	def mvnHome
 	
 	stage('---clean---') {
         	sh "mvn clean"
@@ -10,13 +11,14 @@ node {
 		sh "mvn test"
 	}
 	stage ('artifactory: init') {
+		mvnHome = tool 'M3'
 		rtMaven.tool = 'M3' // Tool name from Jenkins configuration
 		rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server: server
 		buildInfo = Artifactory.newBuildInfo()
 		buildInfo.env.capture = true
 	}
 	stage('Build') {
-		withEnv(["MVN_HOME=$rtMaven.tool"]) {
+		withEnv(["MVN_HOME=$mvnHome"]) {
 			sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean install -Dv=${BUILD_NUMBER}'
 		}
 	}
