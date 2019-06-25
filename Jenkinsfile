@@ -17,7 +17,7 @@ pipeline {
             }
         }        
         stage ('artifactory: init') {
-            //rtMaven.tool = 'M3' // Tool name from Jenkins configuration
+            rtMaven.tool = 'M3' // Tool name from Jenkins configuration
             rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server: server
             buildInfo = Artifactory.newBuildInfo()
             buildInfo.env.capture = true
