@@ -1,8 +1,8 @@
-def server = Artifactory.newServer url: 'http://127.0.0.1:8081/artifactory/', credentialsId: 'admin.jfrog.localhost'
-def rtMaven = Artifactory.newMavenBuild()
-def buildInfo
-
 pipeline {
+    def server = Artifactory.newServer url: 'http://127.0.0.1:8081/artifactory/', credentialsId: 'admin.jfrog.localhost'
+    def rtMaven = Artifactory.newMavenBuild()
+    def buildInfo
+    
     agent any
         
     stages {
