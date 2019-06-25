@@ -15,7 +15,12 @@ node {
 		buildInfo = Artifactory.newBuildInfo()
 		buildInfo.env.capture = true
 	}
-	stage ('maven: build') {
+	stage('Build') {
+		withEnv(["MVN_HOME=$rtMaven.tool"]) {
+			sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean install -Dv=${BUILD_NUMBER}'
+		}
+	}
+	stage ('maven: upload') {
 		rtMaven.run pom: 'pom.xml', goals: 'package', buildInfo: buildInfo
 		sh 'mkdir -p pkg'
 		sh 'mv target/demo.war pkg/demo.war'
