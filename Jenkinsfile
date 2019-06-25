@@ -1,6 +1,12 @@
 pipeline {
     agent any
     
+    environment {
+        def server = Artifactory.newServer url: 'http://127.0.0.1:8081/artifactory/', credentialsId: 'admin.jfrog.localhost'
+        def rtMaven = Artifactory.newMavenBuild()
+        def buildInfo
+    }
+    
     stages {
         stage('---clean---') {
             steps {
@@ -11,12 +17,7 @@ pipeline {
             steps {
                 sh "mvn test"
             }
-        }
-        
-        def server = Artifactory.newServer url: 'http://127.0.0.1:8081/artifactory/', credentialsId: 'admin.jfrog.localhost'
-        def rtMaven = Artifactory.newMavenBuild()
-        def buildInfo
-        
+        }        
         stage ('artifactory: init') {
             //rtMaven.tool = 'M3' // Tool name from Jenkins configuration
             rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server: server
