@@ -23,7 +23,7 @@ node {
 		}
 	}
 	stage ('maven: upload') {
-		rtMaven.run pom: 'pom.xml', goals: 'package', buildInfo: buildInfo
+		rtMaven.run pom: 'pom.xml', goals: 'clean install package', buildInfo: buildInfo
 		sh 'mkdir -p pkg'
 		sh 'mv target/demo.war pkg/demo.war'
 	}
