@@ -17,11 +17,11 @@ node {
 		buildInfo = Artifactory.newBuildInfo()
 		buildInfo.env.capture = true
 	}
-	stage('Build') {
-		withEnv(["MVN_HOME=$mvnHome"]) {
-			sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean install -Dv=${BUILD_NUMBER}'
-		}
-	}
+	//stage('Build') {
+	//	withEnv(["MVN_HOME=$mvnHome"]) {
+	//		sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean install -Dv=${BUILD_NUMBER}'
+	//	}
+	//}
 	stage ('maven: upload') {
 		rtMaven.run pom: 'pom.xml', goals: 'clean install package', buildInfo: buildInfo
 		sh 'mkdir -p pkg'
