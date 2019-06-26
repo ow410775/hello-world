@@ -25,7 +25,7 @@
     <site>
       <id>site-server</id>
       <name>Test Project Site</name>
-      <url>file:///tmp/maven-project-site</url>
+      <url>file:///tmp/hello-world-site</url>
     </site>
   </distributionManagement>
 
@@ -205,13 +205,6 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
-  <scm>
-    <connection>scm:git:git@github.com:jleetutorial/maven-project.git</connection>
-    <developerConnection>scm:git:git@github.com:jleetutorial/maven-project.git</developerConnection>
-    <tag>HEAD</tag>
-    <url>http://github.com/jleetutorial/maven-project</url>
-  </scm>
 
   <prerequisites>
     <maven>3.0.3</maven>
