@@ -1,5 +1,5 @@
 node {
-	def server = Artifactory.newServer url: 'http://127.0.0.1:8081/artifactory/', credentialsId: 'admin.jfrog.localhost'
+	def server = Artifactory.newServer url: 'http://127.0.0.1:8081/artifactory/', username: 'admin', password: 'Jijimon27';
 	def rtMaven = Artifactory.newMavenBuild()
 	def buildInfo
 	def mvnHome
