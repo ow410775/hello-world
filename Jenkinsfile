@@ -6,7 +6,7 @@ node {
 	
 	stage('Get Source') {
 		git url: 'https://github.com/ow410775/hello-world.git'
-		mvnHome = tool 'm3'
+		mvnHome = tool 'M3'
 	}
 	stage('---clean---') {
         	sh "mvn clean"
