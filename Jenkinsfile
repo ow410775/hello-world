@@ -4,8 +4,9 @@ node {
 	def buildInfo
 	def mvnHome
 	
-	stage('Clone Sources') {
+	stage('Get Source') {
 		git url: 'https://github.com/ow410775/hello-world.git'
+		mvnHome = tool 'm3'
 	}
 	stage('---clean---') {
         	sh "mvn clean"
@@ -20,8 +21,13 @@ node {
 		//buildInfo.retention maxBuilds: 10, maxDays: 7, deleteBuildArtifacts: true
 		buildInfo.env.capture = true
 	}
+	//stage('Build') {
+	//	withEnv(["MVN_HOME=$mvnHome"]) {
+	//		sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean install -Dv=${BUILD_NUMBER}'
+	//	}
+	//}
 	stage ('Artifactory: Execute Maven') {
-		rtMaven.run pom: 'pom.xml', goals: '-Dmaven.test.failure.ignore clean install package -Dv=${BUILD_NUMBER}', buildInfo: buildInfo
+		rtMaven.run pom: 'pom.xml', goals: '-Dmaven.test.failure.ignore clean install -Dv=${BUILD_NUMBER} package', buildInfo: buildInfo
 	}
 	stage ('Artifactory: Publish Build Info') {
 		server.publishBuildInfo buildInfo
