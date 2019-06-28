@@ -21,7 +21,7 @@ node {
 		buildInfo.env.capture = true
 	}
 	stage ('Artifactory: Execute Maven') {
-		rtMaven.run pom: 'pom.xml', goals: '-Dmaven.test.failure.ignore clean install -Dv=${BUILD_NUMBER}', buildInfo: buildInfo
+		rtMaven.run pom: 'pom.xml', goals: '-Dmaven.test.failure.ignore clean install package -Dv=${BUILD_NUMBER}', buildInfo: buildInfo
 	}
 	stage ('Artifactory: Publish Build Info') {
 		server.publishBuildInfo buildInfo
