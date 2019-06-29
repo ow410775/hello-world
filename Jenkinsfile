@@ -24,11 +24,11 @@ node {
 	}
 	stage('Build') {
 		withEnv(["MVN_HOME=$mvnHome"]) {
-			sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean install package'
+			sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean install -Dv=${BUILD_NUMBER} package'
 		}
 	}
 	stage ('Artifactory: Execute Maven') {
-		rtMaven.run pom: 'pom.xml', goals: '-Dmaven.test.failure.ignore clean install package', buildInfo: buildInfo
+		rtMaven.run pom: 'pom.xml', goals: '-Dmaven.test.failure.ignore clean install -Dv=${BUILD_NUMBER} package', buildInfo: buildInfo
 	}
 	stage ('Artifactory: Publish Build Info') {
 		server.publishBuildInfo buildInfo
