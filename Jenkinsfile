@@ -17,6 +17,7 @@ node {
 	stage ('Artifactory: Configuration') {
 		rtMaven.tool = 'M3' // Tool name from Jenkins configuration
 		rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server: server
+		rtMaven.deployer.artifactDeploymentPatterns.addInclude("*.*ar")
 		buildInfo = Artifactory.newBuildInfo() // Publishing build-info to Artifactory
 		//buildInfo.retention maxBuilds: 10, maxDays: 7, deleteBuildArtifacts: true
 		buildInfo.env.capture = true
