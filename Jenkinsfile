@@ -22,11 +22,11 @@ node {
 		//buildInfo.retention maxBuilds: 10, maxDays: 7, deleteBuildArtifacts: true
 		buildInfo.env.capture = true
 	}
-	stage('Build') {
-		withEnv(["MVN_HOME=$mvnHome"]) {
-			sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean install -Dv=${BUILD_NUMBER} package'
-		}
-	}
+	//stage('Build') {
+	//	withEnv(["MVN_HOME=$mvnHome"]) {
+	//		sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean install -Dv=${BUILD_NUMBER} package'
+	//	}
+	//}
 	stage ('Artifactory: Execute Maven') {
 		rtMaven.run pom: 'pom.xml', goals: '-Dmaven.test.failure.ignore clean install -Dv=${BUILD_NUMBER} package', buildInfo: buildInfo
 	}
