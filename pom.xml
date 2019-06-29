@@ -6,7 +6,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>hello-world</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0.0.${v}-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>Hello World</name>
 	<description>Sample Pipeline project with a working, deployable site.</description>
 
