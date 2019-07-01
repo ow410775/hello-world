@@ -31,7 +31,7 @@ node {
 	stage('Sonarqube Analysis') {
 		def scannerHome = tool 'SonarQubeScanner';
 		echo 'Initiating SonarQube test'
-		withSonarQubeEnv('SonarQube ') { 
+		withSonarQubeEnv('SonarQube') { 
 			sh "${scannerHome}/bin/sonar-scanner"
 			sleep 10
 			echo "The tester is ${TESTER}"
