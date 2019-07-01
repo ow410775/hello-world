@@ -5,16 +5,16 @@ node {
 	def mvnHome
 	def TESTER
 	
-	stage('Get Source') {
+	stage('SCM Checkout') {
 		git url: 'https://github.com/ow410775/hello-world.git'
 		mvnHome = tool 'M3'
 	}
 	
-	stage('---clean---') {
+	stage('Clean') {
         	sh "mvn clean"
 	}
 	
-	stage('--test--') {
+	stage('Maven Test') {
 		sh "mvn test"
 	}
 	
@@ -28,7 +28,7 @@ node {
 		TESTER = 'placeholder'
 	}
 	
-	stage('Sonarqube Analysis') {
+	stage('Sonarqube Quality Gate') {
 		def scannerHome = tool 'SonarQubeScanner';
 		echo 'Initiating SonarQube test'
 		withSonarQubeEnv('SonarQube') { 
@@ -40,19 +40,10 @@ node {
 			sh 'mvn sonar:sonar -Dsonar.projectKey=DevOps_CaseStudy -Dsonar.host.url=http://127.0.0.1:9000 -Dsonar.projectVersion=helloworld-1.0.0.${BUILD_NUMBER}-SNAPSHOT.war -Dlicense.skip=true'
 		}
 		echo 'SonarQube Test Complete'
-		timeout(time: 10, unit: 'MINUTES') {
-			waitForQualityGate abortPipeline: true
-		}
 	}
 	
-	//stage('Build') {
-	//	withEnv(["MVN_HOME=$mvnHome"]) {
-	//		sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean install -Dv=${BUILD_NUMBER} package'
-	//	}
-	//}
-	
-	stage ('Artifactory: Execute Maven Build') {
-		rtMaven.run pom: 'pom.xml', goals: '-Dmaven.test.failure.ignore install -Dv=${BUILD_NUMBER} package', buildInfo: buildInfo
+	stage ('Artifactory: Execute Maven Build and Package') {
+		rtMaven.run pom: 'pom.xml', goals: '-Dmaven.test.skip=true install -Dv=${BUILD_NUMBER} package', buildInfo: buildInfo
 	}
 	
 	stage ('Artifactory: Publish Build Info and Upload') {
