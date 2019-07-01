@@ -37,7 +37,7 @@ node {
 			echo "The tester is ${TESTER}"
 			sleep 20
 			echo "This is build number ${BUILD_ID}"
-			sh 'mvn sonar:sonar -Dsonar.host.url=http://127.0.0.1:9000 -Dsonar.projectVersion=helloworld-1.0.0.${BUILD_NUMBER}-SNAPSHOT.war -Dlicense.skip=true'
+			sh 'mvn sonar:sonar -Dsonar.projectKey=DevOps_CaseStudy -Dsonar.host.url=http://127.0.0.1:9000 -Dsonar.projectVersion=helloworld-1.0.0.${BUILD_NUMBER}-SNAPSHOT.war -Dlicense.skip=true'
 		}
 		echo 'SonarQube Test Complete'
 		timeout(time: 10, unit: 'MINUTES') {
