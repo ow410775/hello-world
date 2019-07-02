@@ -104,8 +104,10 @@ def notifyBuild(String buildStatus = 'STARTED') {
 	def colorCode = '#FF0000'
 	def subject = "${buildStatus}: Job `${JOB_NAME}` #${BUILD_NUMBER}"
 	def summary = "${subject}:\n${BUILD_URL}"
-	def details = """Current status of Job `${JOB_NAME}` #${BUILD_NUMBER} is: ${buildStatus}\n
-	Check console output at ${JOB_NAME}[${BUILD_NUMBER}] -- ${BUILD_URL}"""
+	def details = """
+	Current status of Job ${JOB_NAME} #${BUILD_NUMBER} is: ${buildStatus}\n
+	Check console output at ${JOB_NAME}[${BUILD_NUMBER}] -- ${BUILD_URL}
+	"""
 
 	// Override default values based on build status
 	if (buildStatus == 'STARTED') {
@@ -133,6 +135,7 @@ def notifyBuild(String buildStatus = 'STARTED') {
 	mail subject: subject,
 		body: details,
 		to: 'jeremiahjohn.roldan@sprint.com',
-		replyTo: 'notify-list@jenkins.com'
+		from: 'do-not-reply@jenkins.com',
+		replyTo: 'do-not-reply@jenkins.com'
 		//recipientProviders: [[$class: 'DevelopersRecipientProvider']]
 }
