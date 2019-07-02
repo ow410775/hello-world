@@ -130,10 +130,10 @@ def notifyBuild(String buildStatus = 'STARTED') {
 		teamDomain: 'devops-bootcamp-group', 
 		tokenCredentialId: 'slack-devops'
 
-	emailext(
+	emailext
 		subject: subject,
 		body: details,
-		to: 'jeremiahjohn.roldan@sprint.com'
+		to: 'jeremiahjohn.roldan@sprint.com',
+		from: 'notify-list@jenkins.com'
 		//recipientProviders: [[$class: 'DevelopersRecipientProvider']]
-	)
 }
