@@ -135,6 +135,7 @@ def notifyBuild(String buildStatus = 'STARTED') {
 	mail subject: subject,
 		body: details,
 		to: 'Jeremiahjohn.Roldan@sprint.com, Shielamarie.Villaluz@sprint.com, Paulinerea.Bayutas@sprint.com, Victorino.Capiral@sprint.com, Seychelleann.Deapera@sprint.com, Rizzajoy.Mancelita@sprint.com',
+		from: 'do-not-reply@jenkins.com',
 		replyTo: 'do-not-reply@jenkins.com'
 		//recipientProviders: [[$class: 'DevelopersRecipientProvider']]
 }
