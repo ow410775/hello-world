@@ -1,5 +1,5 @@
 <head>
-  <title>Bootstrap Example</title>
+  <title>RMS POS Login</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -9,7 +9,7 @@
 <body>
 
 <div class="container">
-  <h2>Retail Management System</h2>
+  <h2>Retail Management System</h2><br><br>
   <form class="form-horizontal" action="/action_page.php">
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Email:</label>
