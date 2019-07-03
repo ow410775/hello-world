@@ -80,7 +80,7 @@ node {
 		
 		stage ('Deployment') {
 			echo 'Initiating DEployment of Code...'
-			sh 'cp /var/lib/jenkins/.m2/repository/com/example/webapp/1.0.0.${BUILD_NUMBER}-SNAPSHOT/webapp-1.0.0.${BUILD_NUMBER}-SNAPSHOT.war /opt/tomcat/webapps'
+			sh 'cp /var/lib/jenkins/.m2/repository/com/example/webapp/1.0.0.${BUILD_NUMBER}-SNAPSHOT/webapp-1.0.0.${BUILD_NUMBER}-SNAPSHOT.war /opt/tomcat/webapps/webapp.war'
 			
 			slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#devopscasestudy', color: '#BDFFC3', message: 'Code Deployed to Tomcat!', teamDomain: 'devops-bootcamp-group', tokenCredentialId: 'slack-devops'
 		}
