@@ -1,3 +1,3 @@
-# maven-project
+# DevOps - Case Study
 
-Simple Maven Project
+Simple DevOps Pipeline Project
