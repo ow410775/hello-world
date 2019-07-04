@@ -11,7 +11,7 @@
 		<center><h2>Retail Management System</h2><br><br></center>
 		<center><div style="max-width:700px; " class="alert alert-danger" role="alert">
 			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-			[RECORDING PURPOSES] This is a test run for DevOps Case Study Login Page...
+			This is a test run for DevOps Case Study Login Page...
 		</div></center>
 	<div class="panel panel-primary center-block" style="max-width:700px">
 		<div class="panel-heading">Enter Login Credentials</div>
