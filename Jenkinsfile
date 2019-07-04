@@ -13,9 +13,7 @@ node {
 			echo 'Initiating SCM Checkout...'
 			git url: 'https://github.com/ow410775/hello-world.git'
 			mvnHome = tool 'M3'
-			wrap([$class: 'BuildUser']) {
-				sh 'echo "${BUILD_USER}"'	
-			}
+
 			slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#devopscasestudy', color: '#BDFFC3', message: 'SCM Checkout Completed!', teamDomain: 'devops-bootcamp-group', tokenCredentialId: 'slack-devops'
 		}
 	
