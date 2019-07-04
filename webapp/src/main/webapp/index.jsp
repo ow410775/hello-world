@@ -1,5 +1,5 @@
 <head>
-  <title>Bootstrap Example</title>
+  <title>RMS POS Login</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<center><h2>Retail Management System</h2><br><br></center>
-		<center><div style="max-width:700px; " class="alert alert-danger" role="alert">
+		<center><div style="max-width:700px; " class="alert alert-info" role="alert">
 			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 			This is a test run for DevOps Case Study Login Page...
 		</div></center>
